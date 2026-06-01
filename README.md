@@ -9,6 +9,8 @@ Everything runs locally: a small Node server reads the JSONL and serves aggregat
 JSON; the browser at `localhost` is the UI. No data leaves your machine — the server
 reads only token `usage` + metadata, never message bodies, and binds to localhost.
 
+![Claude Code Token Dashboard](docs/dashboard.png)
+
 ## Prior art & acknowledgment
 
 [**phuryn/claude-usage**](https://github.com/phuryn/claude-usage) got here first. It's a
@@ -61,3 +63,7 @@ Token counts are shown two ways. **Raw** counts every token equally and is domin
 by cache reads. **Weighted** scales each token type to its input-equivalent cost
 (output ~5×, cache writes 1.25–2×, cache reads ~0.1×) — the gap between the two is the
 point. Numbers are **estimated**, relative to input tokens, not billed dollars.
+
+## License
+
+[MIT](LICENSE) © 2026 Brad Hinkel

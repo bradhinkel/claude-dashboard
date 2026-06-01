@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "description": "Local dashboard for Claude Code token usage (reads ~/.claude/projects JSONL).",
+  "license": "MIT",
   "scripts": {
     "parse": "node src/parser.js",
     "aggregate": "node src/aggregate.js",
