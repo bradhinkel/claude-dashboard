@@ -9,6 +9,16 @@ Everything runs locally: a small Node server reads the JSONL and serves aggregat
 JSON; the browser at `localhost` is the UI. No data leaves your machine — the server
 reads only token `usage` + metadata, never message bodies, and binds to localhost.
 
+## Prior art & acknowledgment
+
+[**phuryn/claude-usage**](https://github.com/phuryn/claude-usage) got here first. It's a
+mature, full-featured Claude Code usage dashboard (with subscription progress bars and
+session history) that was already complete and widely used by the time this project's
+plan was being written — we only discovered it partway through, having arrived at the same
+idea independently. **phuryn has priority on the concept.** This repository is a
+from-scratch learning/reference build, not a competitor; if you want a polished tool to
+actually use, start with phuryn's project.
+
 ## Quick start
 
 ```bash
