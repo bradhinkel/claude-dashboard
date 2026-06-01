@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Claude Code · Token Usage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<main class="shell">
+
+  <!-- masthead -->
+  <header class="masthead">
+    <div>
+      <div class="kicker">✳ Claude Code · Usage</div>
+      <h1>Token Usage</h1>
+    </div>
+    <div style="display:flex; align-items:center; gap:14px;">
+      <div class="meta">
+        <div class="dir" id="m-dir">/home/…/.claude/projects</div>
+        <div class="sub" id="m-sub">— messages · —</div>
+      </div>
+      <button class="btn" id="refresh">↻ Refresh</button>
+    </div>
+  </header>
+
+  <!-- controls -->
+  <section class="controls">
+    <div class="control">
+      <span class="eyebrow">Granularity</span>
+      <div class="seg" id="seg-gran">
+        <button data-v="hour">Hour</button>
+        <button data-v="day" class="active">Day</button>
+        <button data-v="week">Week</button>
+      </div>
+    </div>
+    <div class="control">
+      <span class="eyebrow">Cost basis</span>
+      <div class="seg" id="seg-basis">
+        <button data-v="weighted" class="active">Weighted</button>
+        <button data-v="raw">Raw total</button>
+      </div>
+    </div>
+    <div class="control">
+      <span class="eyebrow">Model</span>
+      <label class="field"><select id="sel-model"></select><span class="chev">▾</span></label>
+    </div>
+    <div class="control">
+      <span class="eyebrow">Project</span>
+      <label class="field"><select id="sel-project"></select><span class="chev">▾</span></label>
+    </div>
+    <div class="control">
+      <span class="eyebrow">From</span>
+      <div class="field"><span id="f-from">—</span></div>
+    </div>
+    <div class="control">
+      <span class="eyebrow">To</span>
+      <div class="field"><span id="f-to">Today</span></div>
+    </div>
+    <div class="control spacer">
+      <span class="eyebrow">Sub-agents</span>
+      <div class="seg">
+        <button>Hide</button>
+        <button class="active">Roll up</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERO: where tokens go -->
+  <section class="card hero">
+    <div class="hero-top">
+      <div class="hero-lede">
+        <div class="kicker">Where the tokens go</div>
+        <h2 id="hero-title">—</h2>
+        <p id="hero-copy"></p>
+      </div>
+      <div class="hero-figures">
+        <div class="col">
+          <div class="lbl">Weighted</div>
+          <div class="big num" id="hero-weighted">—</div>
+        </div>
+        <div class="rule"></div>
+        <div class="col">
+          <div class="lbl">Raw</div>
+          <div class="big accent num" id="hero-raw">—</div>
+          <div class="infl" id="hero-infl">—</div>
+        </div>
+      </div>
+    </div>
+    <div class="legend">
+      <span><i class="swatch" style="background:var(--ink-70)"></i> weighted (real cost)</span>
+      <span><i class="swatch ghost"></i> raw extension = cache reads</span>
+    </div>
+    <div id="project-rows"></div>
+  </section>
+
+  <!-- stat tiles -->
+  <section class="tiles" id="tiles"></section>
+
+  <!-- time series + by model -->
+  <section class="row-2">
+    <div class="card chart-wrap">
+      <div class="card-head" style="margin-bottom:14px;">
+        <h3>Usage over time</h3>
+        <span class="note" id="series-note">weighted · stacked by token type</span>
+      </div>
+      <div class="chart-box"><canvas id="series-chart"></canvas></div>
+      <div class="legend-tokens" id="series-legend"></div>
+    </div>
+    <div class="card bymodel">
+      <h3 style="margin-bottom:16px;">By model</h3>
+      <div id="model-rows"></div>
+    </div>
+  </section>
+
+  <!-- threads -->
+  <section class="card threads">
+    <div class="card-head" style="margin-bottom:12px;">
+      <h3>Top threads</h3>
+      <span class="note">one conversation each</span>
+    </div>
+    <table class="threads-tbl">
+      <thead>
+        <tr>
+          <th>Project</th><th>Session</th><th>Started</th><th>Span</th>
+          <th class="r">Weighted</th><th class="r">Raw</th><th class="r">Msgs</th>
+        </tr>
+      </thead>
+      <tbody id="threads-body"></tbody>
+    </table>
+    <div class="footnote" id="footnote">—</div>
+  </section>
+
+</main>
+
+<script src="vendor/chart.umd.min.js"></script>
+<script src="sample-data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

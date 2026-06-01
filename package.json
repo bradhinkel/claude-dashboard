@@ -1,0 +1,17 @@
+{
+  "name": "claude-token-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local dashboard for Claude Code token usage (reads ~/.claude/projects JSONL).",
+  "scripts": {
+    "parse": "node src/parser.js",
+    "aggregate": "node src/aggregate.js",
+    "ingest": "node src/ingest.js",
+    "report": "node src/report.js",
+    "start": "node src/server.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

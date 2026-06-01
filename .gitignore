@@ -1,0 +1,23 @@
+# dependencies (none currently — zero npm deps — but just in case)
+node_modules/
+
+# local SQLite database (your personal token-usage data)
+data/
+*.db
+*.db-wal
+*.db-shm
+
+# generated reports (inline your real usage + home paths)
+reports/
+
+# backup of the pre-redesign UI
+public_phase5_backup/
+
+# Windows "mark of the web" download tags
+*:Zone.Identifier
+
+# OS / editor cruft
+.DS_Store
+
+# local-only Claude Code settings
+.claude/settings.local.json
